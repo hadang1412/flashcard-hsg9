@@ -1,56 +1,117 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Flashcard HSG9</title>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      background: #0f3460;
-      color: white;
-      padding: 40px;
-    }
-    .card {
-      background: white;
-      color: black;
-      padding: 30px;
-      border-radius: 15px;
-      width: 600px;
-      margin: auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Flashcard HSG9</title>
+
+<style>
+body {
+  font-family: Arial;
+  text-align: center;
+  background: #0f3460;
+  color: white;
+  padding: 40px;
+}
+.card {
+  background: white;
+  color: black;
+  padding: 30px;
+  border-radius: 15px;
+  width: 650px;
+  margin: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  min-height: 150px;
+}
+button {
+  margin: 10px;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+.correct { background: #4caf50; color: white; }
+.wrong { background: #e94560; color: white; }
+.next { background: #f5a623; color: white; }
+</style>
 </head>
+
 <body>
 
 <h1>Flashcard HSG9</h1>
 
 <div class="card">
-  <p id="question">
-    It was only when I heard the full story that I realized I had been cheated. (TAKEN)
-  </p>
+  <p id="question"></p>
+  <p id="answer" style="display:none; font-weight:bold;"></p>
 
   <button onclick="showAnswer()">Xem đáp án</button>
-
-  <p id="answer" style="display:none; margin-top:20px; font-weight:bold;">
-    Not until I heard the full story did I realize that I had been taken in.
-  </p>
+  <br>
+  <button class="correct" onclick="markCorrect()">Đúng</button>
+  <button class="wrong" onclick="markWrong()">Sai</button>
+  <br>
+  <button class="next" onclick="nextCard()">Next</button>
 </div>
 
+<p id="score"></p>
+
 <script>
+
+const flashcards = [
+  {
+    question: "It was only when I heard the full story that I realized I had been cheated. (TAKEN)",
+    answer: "Not until I heard the full story did I realize that I had been taken in."
+  },
+  {
+    question: "I didn't believe Jane's explanation for one moment. (LEAST)",
+    answer: "I didn't believe Jane's explanation in the least."
+  },
+  {
+    question: "The incident happened in a town whose name I can't recall. (WHICH)",
+    answer: "The incident took place in a town the name of which I can't recall."
+  }
+];
+
+let current = 0;
+let correct = 0;
+let wrong = 0;
+
+function loadCard() {
+  document.getElementById("question").innerText = flashcards[current].question;
+  document.getElementById("answer").innerText = flashcards[current].answer;
+  document.getElementById("answer").style.display = "none";
+  updateScore();
+}
+
 function showAnswer() {
   document.getElementById("answer").style.display = "block";
 }
+
+function markCorrect() {
+  correct++;
+  updateScore();
+}
+
+function markWrong() {
+  wrong++;
+  updateScore();
+}
+
+function nextCard() {
+  current++;
+  if (current >= flashcards.length) {
+    alert("Hoàn thành!");
+    current = 0;
+  }
+  loadCard();
+}
+
+function updateScore() {
+  document.getElementById("score").innerText =
+    "Đúng: " + correct + " | Sai: " + wrong;
+}
+
+loadCard();
+
 </script>
 
 </body>
