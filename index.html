@@ -1,1 +1,57 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Flashcard HSG9</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #0f3460;
+      color: white;
+      padding: 40px;
+    }
+    .card {
+      background: white;
+      color: black;
+      padding: 30px;
+      border-radius: 15px;
+      width: 600px;
+      margin: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Flashcard HSG9</h1>
+
+<div class="card">
+  <p id="question">
+    It was only when I heard the full story that I realized I had been cheated. (TAKEN)
+  </p>
+
+  <button onclick="showAnswer()">Xem đáp án</button>
+
+  <p id="answer" style="display:none; margin-top:20px; font-weight:bold;">
+    Not until I heard the full story did I realize that I had been taken in.
+  </p>
+</div>
+
+<script>
+function showAnswer() {
+  document.getElementById("answer").style.display = "block";
+}
+</script>
+
+</body>
+</html>
